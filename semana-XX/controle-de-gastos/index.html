@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Controle de Gastos</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="cabecalho">
+    <div class="container">
+      <h1>Controle de Gastos</h1>
+      <p class="subtitulo">Registre seus gastos e acompanhe os totais por categoria.</p>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <section class="cartao">
+      <h2>Novo gasto</h2>
+      <form id="formGasto" novalidate>
+        <div class="campo">
+          <label for="descricao">Descrição</label>
+          <input type="text" id="descricao" name="descricao"
+                 placeholder="Ex.: Almoço" autocomplete="off">
+        </div>
+        <div class="campo">
+          <label for="valor">Valor (R$)</label>
+          <input type="number" id="valor" name="valor"
+                 step="0.01" inputmode="decimal" placeholder="0,00">
+        </div>
+        <div class="campo">
+          <label for="categoria">Categoria</label>
+          <select id="categoria" name="categoria">
+            <option value="">Selecione…</option>
+            <option value="alimentacao">Alimentação</option>
+            <option value="transporte">Transporte</option>
+            <option value="lazer">Lazer</option>
+            <option value="estudos">Estudos</option>
+            <option value="outros">Outros</option>
+          </select>
+        </div>
+        <button type="submit" class="botao-primario">Adicionar gasto</button>
+      </form>
+      <p id="mensagem" role="status" aria-live="polite"></p>
+    </section>
+
+    <section class="secao-totais">
+      <div id="blocoTotal" class="cartao cartao-total">
+        <span class="rotulo-total">Total geral</span>
+        <strong id="totalGeral" class="valor-total">R$ 0,00</strong>
+      </div>
+      <div class="grade-totais">
+        <div class="mini-total"><span class="rotulo">Alimentação</span><span id="total-alimentacao" class="mini-valor">R$ 0,00</span></div>
+        <div class="mini-total"><span class="rotulo">Transporte</span><span id="total-transporte" class="mini-valor">R$ 0,00</span></div>
+        <div class="mini-total"><span class="rotulo">Lazer</span><span id="total-lazer" class="mini-valor">R$ 0,00</span></div>
+        <div class="mini-total"><span class="rotulo">Estudos</span><span id="total-estudos" class="mini-valor">R$ 0,00</span></div>
+        <div class="mini-total"><span class="rotulo">Outros</span><span id="total-outros" class="mini-valor">R$ 0,00</span></div>
+      </div>
+    </section>
+
+    <section class="cartao">
+      <div class="cabecalho-tabela">
+        <h2>Gastos</h2>
+        <div class="campo campo-filtro">
+          <label for="filtroCategoria">Filtrar</label>
+          <select id="filtroCategoria">
+            <option value="">Todas as categorias</option>
+            <option value="alimentacao">Alimentação</option>
+            <option value="transporte">Transporte</option>
+            <option value="lazer">Lazer</option>
+            <option value="estudos">Estudos</option>
+            <option value="outros">Outros</option>
+          </select>
+        </div>
+      </div>
+      <div class="tabela-wrapper">
+        <table class="tabela">
+          <thead>
+            <tr>
+              <th>Descrição</th>
+              <th>Categoria</th>
+              <th class="coluna-valor">Valor</th>
+              <th class="coluna-acoes">Ações</th>
+            </tr>
+          </thead>
+          <tbody id="listaGastos"></tbody>
+        </table>
+      </div>
+      <p id="vazio" class="vazio">Nenhum gasto cadastrado ainda.</p>
+    </section>
+
+    <section class="cartao bonus">
+      <h2>Bônus — Orçamento mensal</h2>
+      <div class="campo campo-orcamento">
+        <label for="orcamento">Orçamento (R$)</label>
+        <input type="number" id="orcamento" step="0.01" min="0" placeholder="Ex.: 500">
+      </div>
+      <p id="avisoOrcamento" class="aviso" role="status" aria-live="polite"></p>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
